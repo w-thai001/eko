@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eko Extension</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="popup-container">
+      <header class="popup-header">
+        <h1>🚀 Eko</h1>
+        <p>Browser Automation</p>
+      </header>
+
+      <main class="popup-main">
+        <!-- API Key Warning -->
+        <div id="apiKeyWarning" class="warning-box" style="display: none;">
+          <p>⚠️ Please configure your API key in the extension options.</p>
+          <button id="openOptions" class="button secondary">Open Options</button>
+        </div>
+
+        <!-- Task Input -->
+        <div class="task-section">
+          <label for="taskInput">What would you like to do?</label>
+          <textarea
+            id="taskInput"
+            placeholder="Example: Click the login button and fill the form"
+            rows="4"
+          ></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+          <button id="runTask" class="button primary">
+            Run Task
+          </button>
+          <button id="generateWorkflow" class="button secondary">
+            Generate Only
+          </button>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h3>Quick Actions</h3>
+          <button class="quick-action-btn" data-task="Scroll to the bottom of the page">
+            Scroll Down
+          </button>
+          <button class="quick-action-btn" data-task="Click all checkboxes on this page">
+            Check All
+          </button>
+          <button class="quick-action-btn" data-task="Extract all links from this page and copy to clipboard">
+            Extract Links
+          </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div id="progressSection" class="progress-section" style="display: none;">
+          <h3>Progress</h3>
+          <div id="progressLog" class="progress-log"></div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultSection" class="result-section" style="display: none;">
+          <h3 id="resultTitle">Result</h3>
+          <pre id="resultContent"></pre>
+        </div>
+      </main>
+
+      <footer class="popup-footer">
+        <a href="../options/options.html" target="_blank">Settings</a>
+        <a href="https://eko.fellou.ai/docs" target="_blank">Docs</a>
+        <a href="https://github.com/FellouAI/eko" target="_blank">GitHub</a>
+      </footer>
+    </div>
+
+    <script src="popup.ts" type="module"></script>
+  </body>
+</html>

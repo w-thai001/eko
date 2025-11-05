@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eko Extension Options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="options-container">
+      <header class="options-header">
+        <h1>🚀 Eko Extension Settings</h1>
+        <p>Configure your API key and preferences</p>
+      </header>
+
+      <main class="options-main">
+        <!-- API Configuration -->
+        <section class="settings-section">
+          <h2>API Configuration</h2>
+
+          <div class="form-group">
+            <label for="provider">LLM Provider</label>
+            <select id="provider">
+              <option value="anthropic">Anthropic (Claude)</option>
+              <option value="openai">OpenAI (GPT)</option>
+              <option value="google">Google (Gemini)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input
+              type="text"
+              id="model"
+              placeholder="e.g., claude-sonnet-4-20250514"
+            />
+            <small>Leave empty for default model</small>
+          </div>
+
+          <div class="form-group">
+            <label for="apiKey">API Key</label>
+            <input
+              type="password"
+              id="apiKey"
+              placeholder="Enter your API key"
+            />
+            <small>Your API key is stored securely in Chrome sync storage</small>
+          </div>
+
+          <button id="saveSettings" class="button primary">
+            Save Settings
+          </button>
+
+          <div id="saveStatus" class="status-message" style="display: none;"></div>
+        </section>
+
+        <!-- Usage Instructions -->
+        <section class="settings-section">
+          <h2>How to Get API Keys</h2>
+
+          <div class="info-box">
+            <h3>Anthropic (Claude)</h3>
+            <ol>
+              <li>Visit <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
+              <li>Sign up or log in to your account</li>
+              <li>Navigate to API Keys section</li>
+              <li>Create a new API key</li>
+              <li>Copy and paste it above</li>
+            </ol>
+          </div>
+
+          <div class="info-box">
+            <h3>OpenAI (GPT)</h3>
+            <ol>
+              <li>Visit <a href="https://platform.openai.com" target="_blank">platform.openai.com</a></li>
+              <li>Sign up or log in to your account</li>
+              <li>Go to API Keys in your account settings</li>
+              <li>Create a new secret key</li>
+              <li>Copy and paste it above</li>
+            </ol>
+          </div>
+
+          <div class="info-box">
+            <h3>Google (Gemini)</h3>
+            <ol>
+              <li>Visit <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></li>
+              <li>Sign in with your Google account</li>
+              <li>Create a new API key</li>
+              <li>Copy and paste it above</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section class="settings-section">
+          <h2>About Eko</h2>
+          <p>
+            Eko is a production-ready JavaScript framework that enables developers
+            to create reliable agents for browser automation and workflow management.
+          </p>
+          <div class="button-group">
+            <a href="https://eko.fellou.ai/docs" target="_blank" class="button secondary">
+              Documentation
+            </a>
+            <a href="https://github.com/FellouAI/eko" target="_blank" class="button secondary">
+              GitHub
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="options.ts" type="module"></script>
+  </body>
+</html>

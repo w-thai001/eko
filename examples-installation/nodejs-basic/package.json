@@ -1,0 +1,20 @@
+{
+  "name": "eko-nodejs-installation-example",
+  "version": "1.0.0",
+  "description": "Basic Node.js installation example for Eko",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "build": "tsc",
+    "playwright": "playwright install"
+  },
+  "dependencies": {
+    "@eko-ai/eko": "latest",
+    "@eko-ai/eko-nodejs": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}
