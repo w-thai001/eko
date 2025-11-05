@@ -11,6 +11,8 @@ A production-ready Python system for transforming vague Todoist tasks into detai
 - **💾 NotebookLM Export**: Format completed tasks for pattern analysis and learning
 - **🔁 Automatic Retry Logic**: Handles API failures with exponential backoff
 - **📝 Comprehensive Logging**: Track all operations for debugging and analysis
+- **🌐 Webhook Server**: REST API for Fellou integration with dashboard and auto-Todoist updates
+- **📈 Pattern Analysis**: Auto-generates insights when 10+ similar tasks are completed
 
 ## What Gets Generated
 
@@ -189,6 +191,66 @@ This shows:
 - Breakdown by complexity level
 - Recommendations for improvement
 
+## Webhook Server (Fellou Integration)
+
+The system includes a Flask-based webhook server for automated task hydration via Fellou or other automation tools.
+
+### Start the Server
+
+```bash
+# Quick start
+./start_server.sh
+
+# Or manually
+python server.py
+```
+
+Server starts on `http://localhost:5000` with:
+- 📊 **Dashboard**: Real-time stats and quick hydrate form
+- 🔌 **REST API**: Three endpoints for automation
+- ⚡ **Auto-update**: Tasks are automatically updated in Todoist
+- 📈 **Pattern analysis**: Auto-generates insights from completed tasks
+
+### API Endpoints
+
+**POST /hydrate** - Hydrate a task
+```bash
+curl -X POST http://localhost:5000/hydrate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "task_id": "123",
+    "task_content": "Fix bug",
+    "labels": ["bug"]
+  }'
+```
+
+**POST /log-completion** - Log task completion
+```bash
+curl -X POST http://localhost:5000/log-completion \
+  -H "Content-Type: application/json" \
+  -d '{
+    "task_id": "123",
+    "actual_minutes": 145,
+    "outcome": "completed"
+  }'
+```
+
+**GET /stats** - Get calibration statistics
+```bash
+curl http://localhost:5000/stats
+```
+
+### Features
+
+- ✅ **Automatic Todoist updates**: Description, labels, comments
+- ⚡ **Background processing**: Non-blocking operations
+- 🛡️ **Rate limiting**: 10 requests/minute protection
+- 📊 **Live dashboard**: View stats and recent hydrations
+- 📁 **Pattern files**: Auto-generated when 10+ similar tasks completed
+- 🔄 **CORS enabled**: Works with browser-based automation
+
+**Full documentation**: See [WEBHOOK_DEPLOYMENT.md](WEBHOOK_DEPLOYMENT.md)
+
 ## File Structure
 
 ```
@@ -197,13 +259,23 @@ todoist_hydrate/
 ├── todoist_api.py           # Todoist API wrapper with retry logic
 ├── hydrator.py              # Claude-powered task hydration
 ├── notebooklm_export.py     # Export formatting for analysis
+├── stats_tracker.py         # Statistics and pattern analysis
 ├── cli.py                   # Command-line interface
+├── server.py                # Flask webhook server
+├── start_server.sh          # Quick server startup script
 ├── requirements.txt         # Python dependencies
-├── .env.example            # Environment variable template
-├── README.md               # This file
-├── todoist_hydrate.log     # Automatic log file (created on first run)
-├── exports/                # NotebookLM exports (created on first export)
-└── hydrated_*.json         # Cached hydration data (created per task)
+├── .env.example             # Environment variable template
+├── README.md                # This file
+├── QUICKSTART.md            # 5-minute setup guide
+├── WEBHOOK_DEPLOYMENT.md    # Webhook server documentation
+├── verify_setup.py          # Setup verification tool
+├── todoist_hydrate.log      # Application log file
+├── server.log               # Server request log
+├── stats_data.json          # Persistent stats storage
+├── notebooklm_sources/      # NotebookLM exports and patterns
+│   ├── completed_tasks/     # Task completion records
+│   └── patterns/            # Auto-generated pattern files
+└── hydrated_*.json          # Cached hydration data
 ```
 
 ## API Reference

@@ -8,3 +8,7 @@ pydantic>=2.0.0
 
 # Type hints support
 typing-extensions>=4.8.0
+
+# Web server (for webhook integration)
+Flask>=3.0.0
+flask-cors>=4.0.0
